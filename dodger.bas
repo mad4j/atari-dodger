@@ -4,8 +4,11 @@
 
     const pfres = 24
 
-    dim bY = a
-    dim bX = b
+    const LAST_ROW = 24
+
+    dim block0x = b
+    dim block0y = a
+    
 
     ;better random number generator
     dim rand16 = r
@@ -32,17 +35,16 @@ _Game_Init
     %00011000
 
 
-    bX = 11
-    bY = 0
+    block0x = 11
+    block0y = 0
 end
 
 _Main_Loop
 
     COLUP0 = $40
 
-
-    if bY < 12 then pfpixel bX bY on: t = bY - 1: pfpixel bX t off : bY = bY + 1
-    if bY = 12 then bX = rand / 8 : bY = 0 : score = score+1
+    if block0y < LAST_ROW then pfpixel block0x block0y on: t = block0y - 1: pfpixel block0x t off : block0y = block0y + 1
+    if block0y = LAST_ROW then block0x = rand / 8 : block0y = 0 : score = score+1
 
     gosub playerMovement
 
